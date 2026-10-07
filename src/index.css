@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ theme */
+@theme {
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Noto Sans", sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-abyss-950: #04070a;
+  --color-abyss-900: #060c11;
+  --color-abyss-850: #081117;
+  --color-abyss-800: #0a141b;
+}
+
+/* ------------------------------------------------------------------- base */
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    background-color: var(--color-abyss-950);
+  }
+
+  body {
+    background-color: var(--color-abyss-950);
+    color: #cbd8e1;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(45, 212, 191, 0.32);
+    color: #ecfeff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #060c11;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #16323a;
+    border-radius: 9999px;
+    border: 2px solid #060c11;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1e4a55;
+  }
+}
+
+/* --------------------------------------------------------------- surfaces */
+@layer components {
+  /* Frosted glassmorphism panel */
+  .glass {
+    background:
+      linear-gradient(
+        158deg,
+        rgba(148, 200, 210, 0.075) 0%,
+        rgba(8, 17, 23, 0.62) 55%,
+        rgba(6, 12, 17, 0.72) 100%
+      );
+    border: 1px solid rgba(148, 200, 210, 0.14);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+      0 24px 60px -32px rgba(0, 0, 0, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-strong {
+    background:
+      linear-gradient(
+        158deg,
+        rgba(148, 200, 210, 0.11) 0%,
+        rgba(8, 17, 23, 0.82) 100%
+      );
+    border: 1px solid rgba(148, 200, 210, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 30px 70px -34px rgba(0, 0, 0, 0.95),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-hover {
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .glass-hover:hover {
+    border-color: rgba(45, 212, 191, 0.4);
+    transform: translateY(-2px);
+    box-shadow:
+      0 30px 70px -34px rgba(0, 0, 0, 0.95),
+      0 0 0 1px rgba(45, 212, 191, 0.08),
+      0 0 42px -18px rgba(45, 212, 191, 0.5);
+  }
+
+  /* Technical grid backdrop */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(45, 212, 191, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 212, 191, 0.055) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: radial-gradient(
+      ellipse 90% 70% at 50% 0%,
+      #000 25%,
+      transparent 80%
+    );
+  }
+
+  /* Gradient headline text */
+  .text-gradient {
+    background: linear-gradient(94deg, #f0fdfa 8%, #5eead4 52%, #67e8f9 96%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Decorative status chip used in hero console */
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    border: 1px solid rgba(148, 200, 210, 0.18);
+    background: rgba(8, 17, 23, 0.7);
+    border-radius: 9999px;
+    padding: 0.3rem 0.7rem;
+    color: #8fb4bd;
+  }
+}
+
+/* ------------------------------------------------------------------ motion */
+@keyframes hs-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -26px, 0);
+  }
+}
+
+@keyframes hs-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes hs-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hs-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hs-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes hs-wave {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hs-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.hs-float {
+  animation: hs-float 13s ease-in-out infinite;
+}
+.hs-float-slow {
+  animation: hs-float 21s ease-in-out infinite reverse;
+}
+.hs-pulse-ring {
+  animation: hs-ring 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.hs-pulse-ring-delayed {
+  animation: hs-ring 2.2s cubic-bezier(0, 0, 0.2, 1) 0.7s infinite;
+}
+.hs-spin {
+  animation: hs-spin 1s linear infinite;
+}
+.hs-rise {
+  animation: hs-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hs-blink {
+  animation: hs-blink 1.6s ease-in-out infinite;
+}
+.hs-wave-bar {
+  transform-origin: center;
+  animation: hs-wave 1.5s ease-in-out infinite;
+}
+.hs-skeleton {
+  background-image: linear-gradient(
+    90deg,
+    rgba(148, 200, 210, 0.05) 0%,
+    rgba(148, 200, 210, 0.16) 50%,
+    rgba(148, 200, 210, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: hs-shimmer 1.7s ease-in-out infinite;
+}
+
+/* Staggered entrance for section children */
+.hs-stagger > * {
+  animation: hs-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hs-stagger > *:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.hs-stagger > *:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.hs-stagger > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.hs-stagger > *:nth-child(4) {
+  animation-delay: 0.28s;
+}
+.hs-stagger > *:nth-child(5) {
+  animation-delay: 0.36s;
+}
+.hs-stagger > *:nth-child(6) {
+  animation-delay: 0.44s;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
