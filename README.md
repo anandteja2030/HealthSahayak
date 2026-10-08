@@ -7,7 +7,7 @@ general health information, an urgency sense-check, and guidance toward the righ
 Supported languages: **English · Telugu (తెలుగు) · Hindi (हिन्दी)**
 
 > 🩺 **Non-diagnostic by design.** HealthSahayak provides general health information only.
-> It cannot diagnose, prescribe, or replace a qualified healthcare professional.
+> It cannot diagnose, prescribe, or replace a qualified healthcare professional. 
 > In an emergency, call your local emergency number (112 in India).
 
 ---
